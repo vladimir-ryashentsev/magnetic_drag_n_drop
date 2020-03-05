@@ -1,4 +1,4 @@
-package ru.zengalt.draganddropsuspect.dd.magnetic
+package ru.zengalt.draganddropsuspect.dd
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
