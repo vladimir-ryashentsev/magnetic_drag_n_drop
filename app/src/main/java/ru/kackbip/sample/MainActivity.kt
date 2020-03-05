@@ -1,4 +1,4 @@
-package ru.kackbip.magnetic_dragndrop
+package ru.kackbip.sample
 
 import android.annotation.SuppressLint
 import android.graphics.Point
