@@ -15,13 +15,14 @@ class MagneticDragAndDrop private constructor(
 
     init {
         viewsMover.setViews(draggingView, targetView)
-        val parent = draggingView.parent as View
-        parent.setOnTouchListener { _, event ->
+
+        val root = draggingView.rootView
+        root.setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_MOVE) {
                 val touchPoint = Point(event.rawX.toInt(), event.rawY.toInt())
                 viewsMover.onDrag(touchPoint)
             } else if (event.action == MotionEvent.ACTION_UP) {
-                parent.setOnTouchListener(null)
+                root.setOnTouchListener(null)
                 viewsMover.onDrop()
                 listener?.onDrop()
             }
