@@ -1,4 +1,4 @@
-package ru.zengalt.draganddropsuspect.dd
+package ru.kackbip.magneticdragndrop
 
 import android.animation.Animator
 import android.animation.ObjectAnimator

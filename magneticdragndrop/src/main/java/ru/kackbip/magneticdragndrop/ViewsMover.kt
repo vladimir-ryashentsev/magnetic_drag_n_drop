@@ -1,4 +1,4 @@
-package ru.zengalt.draganddropsuspect.dd
+package ru.kackbip.magneticdragndrop
 
 import android.graphics.Point
 import android.graphics.Rect
@@ -16,14 +16,8 @@ class ViewsMover(
     private lateinit var touchPoint: Point
 
     fun setViews(draggingView: View, targetView: View) {
-        animatedDraggingView = AnimatedView(
-            draggingView,
-            animationDurationInMillis
-        )
-        animatedTargetView = AnimatedView(
-            targetView,
-            animationDurationInMillis
-        )
+        animatedDraggingView = AnimatedView(draggingView, animationDurationInMillis)
+        animatedTargetView = AnimatedView(targetView, animationDurationInMillis)
     }
 
     fun onStart(globalTouchPoint: Point) {

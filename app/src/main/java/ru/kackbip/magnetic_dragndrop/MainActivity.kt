@@ -1,4 +1,4 @@
-package ru.zengalt.draganddropsuspect
+package ru.kackbip.magnetic_dragndrop
 
 import android.annotation.SuppressLint
 import android.graphics.Point
@@ -6,7 +6,8 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import ru.zengalt.draganddropsuspect.dd.MagneticDragAndDrop
+import ru.kackbip.magneticdragndrop.MagneticDragAndDrop
+import ru.zengalt.draganddropsuspect.R
 
 class MainActivity : AppCompatActivity() {
 

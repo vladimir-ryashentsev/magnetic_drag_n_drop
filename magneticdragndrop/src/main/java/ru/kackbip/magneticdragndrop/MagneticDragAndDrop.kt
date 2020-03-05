@@ -1,4 +1,4 @@
-package ru.zengalt.draganddropsuspect.dd
+package ru.kackbip.magneticdragndrop
 
 import android.graphics.Point
 import android.graphics.Rect
@@ -6,7 +6,7 @@ import android.view.MotionEvent
 import android.view.View
 
 class MagneticDragAndDrop private constructor(
-    private val viewsMover: ViewsMover,
+    private val viewsMover: ru.kackbip.magneticdragndrop.ViewsMover,
     draggingView: View,
     targetView: View,
     startingGlobalPoint: Point,
@@ -75,11 +75,12 @@ class MagneticDragAndDrop private constructor(
         }
 
         fun build(): MagneticDragAndDrop {
-            val viewsMover = ViewsMover(
-                magnetDistance,
-                targetMoveWindow,
-                animationDurationInMillis
-            )
+            val viewsMover =
+                ru.kackbip.magneticdragndrop.ViewsMover(
+                    magnetDistance,
+                    targetMoveWindow,
+                    animationDurationInMillis
+                )
             return MagneticDragAndDrop(
                 viewsMover,
                 draggingView,
