@@ -36,9 +36,7 @@ class MainActivity : AppCompatActivity() {
                             Log.d("BLABLA", "onDropOuside")
                         }
 
-                        override fun onDropInside() {
-                            Log.d("BLABLA", "onDropInside")
-                        }
+                        override fun onDropInside() = true
 
                     })
                     .build()

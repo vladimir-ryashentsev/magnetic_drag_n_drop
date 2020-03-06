@@ -6,7 +6,7 @@ import android.view.MotionEvent
 import android.view.View
 
 class MagneticDragAndDrop private constructor(
-    private val viewsMover: ru.kackbip.magneticdragndrop.ViewsMover,
+    private val viewsMover: ViewsMover,
     draggingView: View,
     targetView: View,
     startingGlobalPoint: Point,
@@ -23,10 +23,14 @@ class MagneticDragAndDrop private constructor(
                 viewsMover.onDrag(touchPoint)
             } else if (event.action == MotionEvent.ACTION_UP) {
                 root.setOnTouchListener(null)
-                if (viewsMover.onDrop())
-                    listener?.onDropInside()
-                else
+                val keepOnTarget: Boolean
+                if (viewsMover.isHit()) {
+                    keepOnTarget = listener?.onDropInside() == true
+                } else {
                     listener?.onDropOuside()
+                    keepOnTarget = false
+                }
+                viewsMover.onDrop(keepOnTarget)
             }
             true
         }
@@ -38,7 +42,7 @@ class MagneticDragAndDrop private constructor(
     interface Listener {
         fun onStart()
         fun onDropOuside()
-        fun onDropInside()
+        fun onDropInside(): Boolean
     }
 
     class Builder(private val draggingView: View, private val targetView: View) {

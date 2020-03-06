@@ -53,15 +53,15 @@ class ViewsMover(
         animatedTargetView.moveCloserToPointIfNotAnimated(globalTouchPoint, targetMoveWindow)
     }
 
-    fun onDrop(): Boolean {
-        val hit = animatedDraggingView.intersect(animatedTargetView)
-        if (hit)
+    fun isHit() = animatedDraggingView.intersect(animatedTargetView)
+
+    fun onDrop(keepOnTarget: Boolean) {
+        if (keepOnTarget)
             animatedDraggingView.fixToMovingPoint { centerPoint(animatedTargetView) }
         else
             animatedDraggingView.returnToStartingPosition()
 
         animatedTargetView.returnToStartingPosition()
-        return hit
     }
 
     private fun distance(center1: Point, center2: Point): Double {
