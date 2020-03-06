@@ -24,7 +24,9 @@ class MagneticDragAndDrop private constructor(
             } else if (event.action == MotionEvent.ACTION_UP) {
                 root.setOnTouchListener(null)
                 if (viewsMover.onDrop())
-                    listener?.onDrop()
+                    listener?.onDropInside()
+                else
+                    listener?.onDropOuside()
             }
             true
         }
@@ -35,7 +37,8 @@ class MagneticDragAndDrop private constructor(
 
     interface Listener {
         fun onStart()
-        fun onDrop()
+        fun onDropOuside()
+        fun onDropInside()
     }
 
     class Builder(private val draggingView: View, private val targetView: View) {

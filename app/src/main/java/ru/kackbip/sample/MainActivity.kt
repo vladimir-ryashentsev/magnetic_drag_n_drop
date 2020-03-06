@@ -3,6 +3,7 @@ package ru.kackbip.sample
 import android.annotation.SuppressLint
 import android.graphics.Point
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -26,6 +27,20 @@ class MainActivity : AppCompatActivity() {
                 val startingPoint = Point(event.rawX.toInt(), event.rawY.toInt())
                 magneticDragAndDrop = MagneticDragAndDrop.Builder(paper, trash)
                     .startingGlobalPoint(startingPoint)
+                    .listener(object : MagneticDragAndDrop.Listener {
+                        override fun onStart() {
+                            Log.d("BLABLA", "onStart")
+                        }
+
+                        override fun onDropOuside() {
+                            Log.d("BLABLA", "onDropOuside")
+                        }
+
+                        override fun onDropInside() {
+                            Log.d("BLABLA", "onDropInside")
+                        }
+
+                    })
                     .build()
             }
             false
