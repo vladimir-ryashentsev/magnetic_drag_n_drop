@@ -23,8 +23,8 @@ class MagneticDragAndDrop private constructor(
                 viewsMover.onDrag(touchPoint)
             } else if (event.action == MotionEvent.ACTION_UP) {
                 root.setOnTouchListener(null)
-                viewsMover.onDrop()
-                listener?.onDrop()
+                if (viewsMover.onDrop())
+                    listener?.onDrop()
             }
             true
         }
