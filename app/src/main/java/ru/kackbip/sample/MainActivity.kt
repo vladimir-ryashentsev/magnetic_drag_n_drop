@@ -3,10 +3,10 @@ package ru.kackbip.sample
 import android.annotation.SuppressLint
 import android.graphics.Point
 import android.os.Bundle
-import android.util.Log
 import android.view.MotionEvent
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import ru.kackbip.magneticdragndrop.ActionAfterDropInside
 import ru.kackbip.magneticdragndrop.MagneticDragAndDrop
 import ru.zengalt.draganddropsuspect.R
 
@@ -29,15 +29,12 @@ class MainActivity : AppCompatActivity() {
                     .startingGlobalPoint(startingPoint)
                     .listener(object : MagneticDragAndDrop.Listener {
                         override fun onStart() {
-                            Log.d("BLABLA", "onStart")
                         }
 
                         override fun onDropOuside() {
-                            Log.d("BLABLA", "onDropOuside")
                         }
 
-                        override fun onDropInside() = true
-
+                        override fun onDropInside() = ActionAfterDropInside.KEEP_ON_TARGET
                     })
                     .build()
             }

@@ -23,14 +23,14 @@ class MagneticDragAndDrop private constructor(
                 viewsMover.onDrag(touchPoint)
             } else if (event.action == MotionEvent.ACTION_UP) {
                 root.setOnTouchListener(null)
-                val keepOnTarget: Boolean
+                var actionAfterDropInside: ActionAfterDropInside? = null
                 if (viewsMover.isHit()) {
-                    keepOnTarget = listener?.onDropInside() == true
+                    actionAfterDropInside = listener?.onDropInside() ?: ActionAfterDropInside.RETURN
                 } else {
                     listener?.onDropOuside()
-                    keepOnTarget = false
+                    actionAfterDropInside = ActionAfterDropInside.RETURN
                 }
-                viewsMover.onDrop(keepOnTarget)
+                viewsMover.onDrop(actionAfterDropInside)
             }
             true
         }
@@ -42,7 +42,7 @@ class MagneticDragAndDrop private constructor(
     interface Listener {
         fun onStart()
         fun onDropOuside()
-        fun onDropInside(): Boolean
+        fun onDropInside(): ActionAfterDropInside
     }
 
     class Builder(private val draggingView: View, private val targetView: View) {

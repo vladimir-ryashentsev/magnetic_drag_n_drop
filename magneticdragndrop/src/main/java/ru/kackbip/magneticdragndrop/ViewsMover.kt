@@ -55,11 +55,16 @@ class ViewsMover(
 
     fun isHit() = animatedDraggingView.intersect(animatedTargetView)
 
-    fun onDrop(keepOnTarget: Boolean) {
-        if (keepOnTarget)
-            animatedDraggingView.fixToMovingPoint { centerPoint(animatedTargetView) }
-        else
-            animatedDraggingView.returnToStartingPosition()
+    fun onDrop(actionAfterDropInside: ActionAfterDropInside) {
+        when (actionAfterDropInside) {
+            ActionAfterDropInside.KEEP_ON_TARGET ->
+                animatedDraggingView.fixToMovingPoint { centerPoint(animatedTargetView) }
+            ActionAfterDropInside.RETURN ->
+                animatedDraggingView.returnToStartingPosition()
+            else -> {
+                //do nothing
+            }
+        }
 
         animatedTargetView.returnToStartingPosition()
     }
